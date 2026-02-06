@@ -74,8 +74,9 @@
         }
     </script>
     <script>
-        // Check for dark mode preference
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        // Default to dark mode for premium security aesthetic
+        // Only use light mode if explicitly set in localStorage
+        if (localStorage.theme !== 'light') {
             document.documentElement.classList.add('dark')
         } else {
             document.documentElement.classList.remove('dark')
