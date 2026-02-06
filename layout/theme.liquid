@@ -205,20 +205,29 @@
         box-shadow: none !important;
       }
       
-      /* DARK MODE - Header and Footer Styles */
+      /* DARK MODE - Header Styles with MAX-WIDTH and BETTER CONTRAST */
+      html.dark #header-group,
+      html.dark .shopify-section-header {
+        background-color: rgba(1,1,1,0.95) !important;
+      }
       html.dark header,
       html.dark .header-section .header,
       html.dark .shopify-section-header header,
       html.dark [id*="header"] header {
-        background-color: var(--stitch-color-background) !important;
+        background-color: transparent !important;
         --color-background: 1,1,1 !important;
-        --color-foreground: 245,245,247 !important;
-        border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+        --color-foreground: 255,255,255 !important;
+        border-bottom: 1px solid rgba(255,255,255,0.1) !important;
       }
+      /* High contrast header text - WHITE for visibility */
       html.dark header *,
+      html.dark header a,
+      html.dark header span,
+      html.dark header button,
       html.dark .header-section .header *,
       html.dark .shopify-section-header header * {
-        color: var(--stitch-color-text-main) !important;
+        color: #ffffff !important;
+        fill: #ffffff !important;
       }
       html.dark header a:hover,
       html.dark .header-section .header a:hover {
@@ -233,11 +242,11 @@
         background-color: var(--stitch-color-background) !important;
         --color-background: 1,1,1 !important;
         --color-foreground: 245,245,247 !important;
-        border-top: 1px solid rgba(255,255,255,0.05) !important;
+        border-top: 1px solid rgba(255,255,255,0.1) !important;
       }
       html.dark footer *,
       html.dark .footer * {
-        color: var(--stitch-color-text-muted) !important;
+        color: rgba(255,255,255,0.7) !important;
       }
       html.dark footer a:hover,
       html.dark .footer a:hover {
@@ -246,17 +255,47 @@
       html.dark footer h2,
       html.dark footer h3,
       html.dark footer h4 {
-        color: var(--stitch-color-text-main) !important;
+        color: #ffffff !important;
       }
       
-      /* Header/Footer edge-to-edge padding fix */
+      /* HEADER/FOOTER MAX-WIDTH AND CENTERED CONTENT */
       header .page-width,
-      footer .page-width,
       .header .page-width,
-      .footer .page-width {
-        padding-left: 24px !important;
-        padding-right: 24px !important;
-        max-width: 100% !important;
+      .header-wrapper .page-width {
+        max-width: 1440px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+      }
+      footer .page-width,
+      .footer .page-width,
+      .footer-content .page-width {
+        max-width: 1440px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+      }
+      
+      /* LARGER HEADER */
+      header,
+      .header,
+      .header-wrapper {
+        min-height: 70px !important;
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+      }
+      header nav a,
+      .header nav a,
+      header .header__menu a {
+        font-size: 15px !important;
+        font-weight: 500 !important;
+      }
+      header .header__icons button,
+      header .header__icons a {
+        width: 44px !important;
+        height: 44px !important;
       }
       
       /* Horizontal scrollbar styling for carousel */
