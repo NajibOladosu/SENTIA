@@ -186,6 +186,19 @@
         max-width: 100% !important;
         margin: 0 !important;
       }
+      
+      /* STICKY HEADER */
+      #header-group {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1000 !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+      }
+      #header-group header,
+      .header-section header {
+        position: relative !important;
+      }
       /* Remove any borders/shadows on main container */
       main, #MainContent, .content-for-layout {
         border: none !important;
