@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SecureHome - Premium Security</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#1d1d1f] dark:text-white antialiased overflow-x-hidden">
+<!-- Navigation -->
+<nav class="sticky top-0 z-50 w-full bg-white/80 dark:bg-[#101622]/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800 transition-colors duration-300">
+<div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="text-primary">
+<span class="material-symbols-outlined !text-[28px]">shield_lock</span>
+</div>
+<span class="text-lg font-semibold tracking-tight">SecureHome</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Store</a>
+<a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Mac</a>
+<a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">iPad</a>
+<a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Accessories</a>
+<a class="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary transition-colors" href="#">Support</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-gray-600 dark:text-gray-300 hover:text-primary transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+<span class="material-symbols-outlined !text-[20px]">search</span>
+</button>
+<button class="p-2 text-gray-600 dark:text-gray-300 hover:text-primary transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 relative">
+<span class="material-symbols-outlined !text-[20px]">shopping_bag</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="md:hidden p-2 text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative w-full py-16 md:py-32 flex flex-col items-center justify-center overflow-hidden">
+<div class="layout-content-container max-w-[1200px] w-full px-6 flex flex-col md:flex-row items-center gap-12 md:gap-20">
+<div class="flex-1 flex flex-col items-start gap-6 z-10">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold tracking-wide uppercase">
+                    New Release
+                </div>
+<h1 class="text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight text-gray-900 dark:text-white">
+                    Security, <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">Redefined.</span>
+</h1>
+<p class="text-xl md:text-2xl font-light text-gray-500 dark:text-gray-400 max-w-[500px] leading-relaxed">
+                    Experience the next generation of smart protection. Seamlessly integrated, beautifully designed for the modern home.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto">
+<button class="flex h-12 px-8 items-center justify-center rounded-full bg-primary text-white text-base font-semibold hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-lg shadow-blue-500/30">
+                        Buy Now <span class="mx-2">•</span> $299
+                    </button>
+<button class="flex h-12 px-8 items-center justify-center rounded-full bg-white dark:bg-white/10 text-primary dark:text-white border border-transparent hover:border-primary/20 hover:bg-gray-50 dark:hover:bg-white/20 text-base font-medium transition-all duration-300 group">
+                        Learn more <span class="material-symbols-outlined ml-1 group-hover:translate-x-1 transition-transform text-sm">arrow_forward_ios</span>
+</button>
+</div>
+</div>
+<div class="flex-1 w-full relative group perspective-1000">
+<!-- Abstract decorative glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-400/20 dark:bg-blue-900/20 blur-[100px] rounded-full"></div>
+<div class="relative w-full aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl transition-transform duration-700 hover:scale-[1.02]">
+<div class="w-full h-full bg-center bg-cover bg-no-repeat" data-alt="Close up of a sleek brushed metal smart lock on a modern door" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWGU5U8Igs12NVWqCTrKrSCTLZfFhJqcGQxF8-TyN93dR76BoFuVM6nlzg5mSyl78Gix3aDOtaHB7V_ngz7tuvB102bDnIlChUtVEeZs4FOMl6OlD_lZlxMrUe-wihmjkxdseO_vip-tInDw_EpbURiR0u91TTjdmvydIf9ZK11cC43YgKavpWv_qdwtJEuvHfsRAmUcU506PVvtkh16TZUz24Ms-Bq_D-XqeucvQmj7kH7ijKQCjaZNs77NrijQpNJzBOK4bMp9rI");'>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Showcase Header -->
+<section class="w-full pt-10 pb-6">
+<div class="max-w-[1200px] mx-auto px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-200 dark:border-gray-800 pb-6">
+<div>
+<h2 class="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white mb-2">The Ecosystem</h2>
+<p class="text-gray-500 dark:text-gray-400">Complete your secure home setup.</p>
+</div>
+<a class="text-primary hover:text-blue-700 font-medium flex items-center gap-1 group" href="#">
+                    View all accessories 
+                    <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Horizontal Scroll Carousel -->
+<section class="w-full pb-20">
+<div class="max-w-[1200px] mx-auto px-6">
+<div class="flex overflow-x-auto no-scrollbar pb-8 pt-4 gap-6 snap-x snap-mandatory">
+<!-- Card 1 -->
+<div class="flex-none w-[280px] md:w-[320px] snap-center">
+<div class="bg-white dark:bg-[#1a202c] rounded-2xl p-6 h-full flex flex-col gap-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border border-gray-100 dark:border-gray-800">
+<div class="w-full aspect-square bg-gray-50 dark:bg-[#101622] rounded-xl overflow-hidden flex items-center justify-center relative">
+<div class="w-full h-full bg-contain bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-110" data-alt="Minimalist white security camera on a stand" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCmXSsvzqn2JaGyqROdrtYRzw7rDgSgm4Byv5Q-dPRC9KXh8L8oyBEdO4Lua3duIZxw9zdNquRqiPO-yl-72Yay4Qdwbk07j6IFbRsiNahAgElaeRhx4aJIJTdfXGPn0Sam6OfyRZLYlGxZ5y-NdPVZCB5lhSEK63ZD2LjE7fhMnEbZXG7J9mQ4o0o66d2vuQSIiLBFH_J9KYmVgpgaAbMoHHwsuHDMhM8veq94IlGqjfUTKf5iMAL5uMF5aoDJ6ttVgRzZWBXx99LY");'></div>
+<button class="absolute bottom-3 right-3 w-8 h-8 bg-black/5 dark:bg-white/10 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<div class="flex flex-col flex-1 justify-between">
+<div>
+<h3 class="text-lg font-semibold text-gray-900 dark:text-white">Pro Vision 4K</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Crystal clear monitoring.</p>
+</div>
+<div class="flex items-center justify-between mt-4">
+<span class="text-base font-medium text-gray-900 dark:text-white">$199</span>
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">New</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex-none w-[280px] md:w-[320px] snap-center">
+<div class="bg-white dark:bg-[#1a202c] rounded-2xl p-6 h-full flex flex-col gap-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border border-gray-100 dark:border-gray-800">
+<div class="w-full aspect-square bg-gray-50 dark:bg-[#101622] rounded-xl overflow-hidden flex items-center justify-center relative">
+<div class="w-full h-full bg-contain bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-110" data-alt="Small circular white motion sensor tag" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCC4DwDPzSOVXorfxSYYnF2cLCI7aOW3ntbRd0zcfutCofxKsz5qJfsNke0hM8ogRgvk-n0TDUJYn5IW5dJ4S_6-CUD2wCP_zFlsO2FY21nJhDze14RL5VR3RlmEJCkK73fe2l8YnpVlRIynTqZDUt5_ev8iOmDeNlt2ICNBhxweYKV7ulJoP4q-5TQDm7l2oZD0Hjc1iNpaGwEhAw0xFUBIT238mTlCn4B47BtgLOZeHHEoPBCISrMKJ1ib521SQuID0CvndDAZElR");'></div>
+<button class="absolute bottom-3 right-3 w-8 h-8 bg-black/5 dark:bg-white/10 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<div class="flex flex-col flex-1 justify-between">
+<div>
+<h3 class="text-lg font-semibold text-gray-900 dark:text-white">Sense Tag</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Motion &amp; vibration detection.</p>
+</div>
+<div class="flex items-center justify-between mt-4">
+<span class="text-base font-medium text-gray-900 dark:text-white">$49</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex-none w-[280px] md:w-[320px] snap-center">
+<div class="bg-white dark:bg-[#1a202c] rounded-2xl p-6 h-full flex flex-col gap-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border border-gray-100 dark:border-gray-800">
+<div class="w-full aspect-square bg-gray-50 dark:bg-[#101622] rounded-xl overflow-hidden flex items-center justify-center relative">
+<div class="w-full h-full bg-contain bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-110" data-alt="Sleek white smart home hub device" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCu3Ec4Mvp97GcwLWaUxgTq41P4aKQ9I7DDDQsIw0qc4qcw-n0YVc35mlCoUbVyZC9NbPei_qTvrsQd3f1QMi2QRZsB-TXyR9S9siJsfaT3KPhCPjfi88eWO8_zxiASa4j5D8_HAjcivwwlAp4ffxfB4X79YWrEw7VR_q9tq3So7HBFjuMWZfuMlzVZg8E8RCxqLRxbw0fxEg_w_N6X4PNocOkGB-eevwjuhdcwOXkC-hk8AVgj5CJRdfSIFAEHkMtXSlov5xA1if8D");'></div>
+<button class="absolute bottom-3 right-3 w-8 h-8 bg-black/5 dark:bg-white/10 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<div class="flex flex-col flex-1 justify-between">
+<div>
+<h3 class="text-lg font-semibold text-gray-900 dark:text-white">Home Hub</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">The brain of your secure home.</p>
+</div>
+<div class="flex items-center justify-between mt-4">
+<span class="text-base font-medium text-gray-900 dark:text-white">$129</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="flex-none w-[280px] md:w-[320px] snap-center">
+<div class="bg-white dark:bg-[#1a202c] rounded-2xl p-6 h-full flex flex-col gap-6 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group border border-gray-100 dark:border-gray-800">
+<div class="w-full aspect-square bg-gray-50 dark:bg-[#101622] rounded-xl overflow-hidden flex items-center justify-center relative">
+<div class="w-full h-full bg-contain bg-center bg-no-repeat transition-transform duration-500 group-hover:scale-110" data-alt="Modern smart doorbell with camera" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD4px-hNABrnXLh0HmUqfRxRUUtcs_-K1tPATeuy18lzF-V2-rf3lSncqwfVb5v_s_rZJO2K0DHztryaa0ZaHkLh7y87ly1BWLTSMdEswsgYmO_w0YaWZWbxHzN89_3nnkY4GUWG1o5bYVPh6FmHdJWPpc3fPDq7iCG5r5OzkDfV7FflC47n4DWbghHOecKCvK3cmzvKL2Rv2modeqAYPMyCvouZO20kqPwMfhroXt-9BmxVww9Mnwrj_3Ph39387ZcP9phIfgy-p4L");'></div>
+<button class="absolute bottom-3 right-3 w-8 h-8 bg-black/5 dark:bg-white/10 backdrop-blur rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<div class="flex flex-col flex-1 justify-between">
+<div>
+<h3 class="text-lg font-semibold text-gray-900 dark:text-white">Doorbell Pro</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">See who's there, from anywhere.</p>
+</div>
+<div class="flex items-center justify-between mt-4">
+<span class="text-base font-medium text-gray-900 dark:text-white">$159</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="w-full py-20 bg-white dark:bg-[#1a202c]">
+<div class="max-w-[1200px] mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Main Feature -->
+<div class="col-span-1 md:col-span-12 lg:col-span-6 bg-background-light dark:bg-[#101622] rounded-3xl p-8 md:p-12 flex flex-col justify-between min-h-[400px]">
+<div>
+<span class="material-symbols-outlined text-4xl mb-6 text-primary">encrypted</span>
+<h2 class="text-3xl font-bold tracking-tight mb-4">Privacy first.<br/>Always.</h2>
+<p class="text-gray-500 dark:text-gray-400 text-lg max-w-sm">Local processing means your video footage never leaves your home without your permission. End-to-end encrypted.</p>
+</div>
+<div class="mt-8">
+<a class="text-primary font-semibold hover:underline" href="#">Read our privacy manifesto</a>
+</div>
+</div>
+<!-- Secondary Features -->
+<div class="col-span-1 md:col-span-6 lg:col-span-3 bg-background-light dark:bg-[#101622] rounded-3xl p-8 flex flex-col gap-4">
+<span class="material-symbols-outlined text-3xl text-gray-900 dark:text-white">bolt</span>
+<h3 class="text-xl font-bold">3-Year Battery</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Forget about charging. Our ultra-efficient chip design keeps you protected for years.</p>
+</div>
+<div class="col-span-1 md:col-span-6 lg:col-span-3 bg-background-light dark:bg-[#101622] rounded-3xl p-8 flex flex-col gap-4">
+<span class="material-symbols-outlined text-3xl text-gray-900 dark:text-white">home_app_logo</span>
+<h3 class="text-xl font-bold">Smart Integration</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400">Works seamlessly with Apple HomeKit, Google Home, and Amazon Alexa right out of the box.</p>
+</div>
+<div class="col-span-1 md:col-span-12 bg-primary text-white rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden group">
+<div class="relative z-10 flex flex-col items-start gap-4">
+<h2 class="text-3xl font-bold">24/7 Professional Monitoring</h2>
+<p class="text-blue-100 max-w-lg">Get peace of mind with our optional subscription. Real humans, ready to help in an emergency.</p>
+<button class="bg-white text-primary px-6 py-3 rounded-full font-bold text-sm hover:bg-gray-100 transition-colors">Start Free Trial</button>
+</div>
+<div class="relative z-10 hidden md:block">
+<span class="material-symbols-outlined text-[120px] opacity-20 group-hover:scale-110 transition-transform duration-500">support_agent</span>
+</div>
+<!-- Decorative Circle -->
+<div class="absolute -right-20 -bottom-40 w-80 h-80 bg-blue-500 rounded-full blur-3xl opacity-50"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full border-t border-gray-200 dark:border-gray-800 bg-background-light dark:bg-background-dark pt-16 pb-8">
+<div class="max-w-[1200px] mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+<div class="flex flex-col gap-4">
+<h4 class="font-semibold text-gray-900 dark:text-white">Shop and Learn</h4>
+<ul class="flex flex-col gap-2 text-sm text-gray-500 dark:text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">Store</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Cameras</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Sensors</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Smart Locks</a></li>
+</ul>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-semibold text-gray-900 dark:text-white">Account</h4>
+<ul class="flex flex-col gap-2 text-sm text-gray-500 dark:text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">Manage ID</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Orders</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Subscription</a></li>
+</ul>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-semibold text-gray-900 dark:text-white">Support</h4>
+<ul class="flex flex-col gap-2 text-sm text-gray-500 dark:text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">Community</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Guides</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-semibold text-gray-900 dark:text-white">Stay Connected</h4>
+<p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Sign up for the latest news and offers.</p>
+<div class="flex gap-2">
+<input class="bg-white dark:bg-[#1a202c] border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm w-full focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Email address" type="email"/>
+<button class="bg-primary text-white p-2 rounded-lg hover:bg-blue-700 transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
+<p>Copyright © 2023 SecureHome Inc. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-gray-600 dark:hover:text-gray-200" href="#">Privacy Policy</a>
+<a class="hover:text-gray-600 dark:hover:text-gray-200" href="#">Terms of Use</a>
+<a class="hover:text-gray-600 dark:hover:text-gray-200" href="#">Sales Policy</a>
+<a class="hover:text-gray-600 dark:hover:text-gray-200" href="#">Legal</a>
+<a class="hover:text-gray-600 dark:hover:text-gray-200" href="#">Site Map</a>
+</div>
+<div class="flex gap-1 text-gray-400">
+<span class="material-symbols-outlined text-sm">public</span>
+<span>United States</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

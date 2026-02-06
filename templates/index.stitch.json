@@ -1,0 +1,97 @@
+{
+    "sections": {
+        "hero": {
+            "type": "stitch-hero",
+            "settings": {
+                "badge_text": "New Release",
+                "heading_line_1": "Security,",
+                "heading_highlight": "Redefined.",
+                "description": "Experience the next generation of smart protection. Seamlessly integrated, beautifully designed.",
+                "button_1_label": "Buy Now",
+                "button_1_price": "$299",
+                "button_1_link": "/collections/all",
+                "button_2_label": "Learn more",
+                "button_2_link": "/pages/about-us",
+                "show_background_blobs": true,
+                "padding_top": 80,
+                "padding_bottom": 80
+            }
+        },
+        "ecosystem": {
+            "type": "stitch-ecosystem",
+            "settings": {
+                "heading": "The Ecosystem",
+                "subheading": "Complete your secure home setup.",
+                "link_label": "View all accessories",
+                "link_url": "/collections/accessories",
+                "padding_top": 40,
+                "padding_bottom": 24
+            }
+        },
+        "carousel": {
+            "type": "stitch-product-carousel",
+            "settings": {
+                "products_to_show": 8,
+                "padding_top": 0,
+                "padding_bottom": 80
+            }
+        },
+        "features": {
+            "type": "stitch-features-grid",
+            "blocks": {
+                "feature_1": {
+                    "type": "feature_large",
+                    "settings": {
+                        "icon": "encrypted",
+                        "heading": "Privacy first.\nAlways.",
+                        "text": "Local processing means your video footage never leaves your home without your permission. End-to-end encrypted.",
+                        "link_label": "Read our privacy manifesto",
+                        "link_url": "/pages/privacy"
+                    }
+                },
+                "feature_2": {
+                    "type": "feature_small",
+                    "settings": {
+                        "icon": "bolt",
+                        "heading": "3-Year Battery",
+                        "text": "Forget about charging. Our ultra-efficient chip design keeps you protected for years."
+                    }
+                },
+                "feature_3": {
+                    "type": "feature_small",
+                    "settings": {
+                        "icon": "home_app_logo",
+                        "heading": "Smart Integration",
+                        "text": "Works seamlessly with Apple HomeKit, Google Home, and Amazon Alexa right out of the box."
+                    }
+                },
+                "feature_4": {
+                    "type": "feature_wide",
+                    "settings": {
+                        "icon": "support_agent",
+                        "heading": "24/7 Professional Monitoring",
+                        "text": "Get peace of mind with our optional subscription. Real humans, ready to help in an emergency.",
+                        "button_label": "Start Free Trial",
+                        "button_link": "/products/monitoring"
+                    }
+                }
+            },
+            "block_order": [
+                "feature_1",
+                "feature_2",
+                "feature_3",
+                "feature_4"
+            ],
+            "settings": {
+                "padding_top": 80,
+                "padding_bottom": 80
+            }
+        }
+    },
+    "order": [
+        "hero",
+        "ecosystem",
+        "carousel",
+        "features"
+    ]
+}

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Security Collections Grid - SecureHome</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Hide scrollbar for horizontal scrolling areas if needed */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111318] dark:text-white transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 w-full border-b border-solid border-[#f0f2f4] dark:border-[#2a3441] bg-white/95 dark:bg-[#101622]/95 backdrop-blur-sm px-4 lg:px-10 py-3">
+<div class="mx-auto flex max-w-7xl items-center justify-between">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-4 text-[#111318] dark:text-white group" href="#">
+<div class="size-8 text-primary transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-[32px]">shield_lock</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">SecureHome</h2>
+</a>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-sm font-medium leading-normal text-[#111318] dark:text-gray-200 hover:text-primary transition-colors" href="#">Collections</a>
+<a class="text-sm font-medium leading-normal text-[#111318] dark:text-gray-200 hover:text-primary transition-colors" href="#">About Us</a>
+<a class="text-sm font-medium leading-normal text-[#111318] dark:text-gray-200 hover:text-primary transition-colors" href="#">Support</a>
+</nav>
+</div>
+<div class="flex items-center justify-end gap-4 lg:gap-8">
+<label class="hidden lg:flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[#f0f2f4] dark:bg-[#1e2732]">
+<div class="text-[#616f89] flex items-center justify-center pl-4 rounded-l-lg border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-[#111318] dark:text-white focus:outline-0 placeholder:text-[#616f89] px-3 text-sm font-normal leading-normal" placeholder="Search products..."/>
+</div>
+</label>
+<div class="flex gap-3">
+<button class="flex items-center justify-center rounded-lg size-10 bg-[#f0f2f4] dark:bg-[#1e2732] text-[#111318] dark:text-white hover:bg-gray-200 dark:hover:bg-[#2a3441] transition-colors">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</button>
+<button class="flex items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white hover:bg-blue-700 transition-colors shadow-sm shadow-blue-500/30">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+<span class="text-sm font-bold hidden sm:inline">Cart (0)</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1">
+<div class="mx-auto flex max-w-7xl flex-col px-4 py-6 sm:px-6 lg:px-8">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 py-4">
+<a class="text-[#616f89] hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Home</a>
+<span class="text-[#616f89] text-sm font-medium leading-normal">/</span>
+<a class="text-[#616f89] hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Shop</a>
+<span class="text-[#616f89] text-sm font-medium leading-normal">/</span>
+<span class="text-[#111318] dark:text-white text-sm font-medium leading-normal">All Collections</span>
+</div>
+<!-- PageHeading -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 py-6 border-b border-[#f0f2f4] dark:border-[#2a3441]">
+<div class="flex flex-col gap-2">
+<h1 class="text-[#111318] dark:text-white text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+                            Security Collections
+                        </h1>
+<p class="text-[#616f89] text-lg font-normal leading-normal max-w-2xl">
+                            Premium protection for your home and lifestyle. Designed for modern living.
+                        </p>
+</div>
+<div class="flex gap-2">
+<!-- Mobile Filter Toggle could go here -->
+</div>
+</div>
+<!-- Filters & Toolbar -->
+<div class="sticky top-[64px] z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+<!-- Chips / Filters -->
+<div class="flex gap-3 overflow-x-auto no-scrollbar w-full sm:w-auto pb-1 sm:pb-0">
+<button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-[#1e2732] border border-[#e5e7eb] dark:border-[#2a3441] pl-4 pr-3 hover:border-primary transition-colors shadow-sm">
+<p class="text-[#111318] dark:text-white text-sm font-medium">Category</p>
+<span class="material-symbols-outlined text-[20px] text-[#616f89] group-hover:text-primary">expand_more</span>
+</button>
+<button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-[#1e2732] border border-[#e5e7eb] dark:border-[#2a3441] pl-4 pr-3 hover:border-primary transition-colors shadow-sm">
+<p class="text-[#111318] dark:text-white text-sm font-medium">Price Range</p>
+<span class="material-symbols-outlined text-[20px] text-[#616f89] group-hover:text-primary">expand_more</span>
+</button>
+<button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-[#1e2732] border border-[#e5e7eb] dark:border-[#2a3441] pl-4 pr-3 hover:border-primary transition-colors shadow-sm">
+<p class="text-[#111318] dark:text-white text-sm font-medium">Features</p>
+<span class="material-symbols-outlined text-[20px] text-[#616f89] group-hover:text-primary">expand_more</span>
+</button>
+<button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-transparent pl-2 pr-2 text-[#616f89] hover:text-primary transition-colors">
+<p class="text-sm font-medium">Clear All</p>
+</button>
+</div>
+<!-- Sort -->
+<div class="flex items-center gap-2 shrink-0">
+<span class="text-sm text-[#616f89] hidden sm:block">Sort by:</span>
+<button class="flex h-9 items-center justify-center gap-x-2 rounded-lg bg-transparent text-[#111318] dark:text-white font-medium text-sm hover:bg-[#e5e7eb] dark:hover:bg-[#2a3441] px-3 transition-colors">
+                            Featured <span class="material-symbols-outlined text-[18px]">sort</span>
+</button>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 py-6">
+<!-- Product Card 1 -->
+<div class="group flex flex-col gap-4 cursor-pointer">
+<div class="relative w-full aspect-[4/5] overflow-hidden rounded-xl bg-gray-100 dark:bg-[#1e2732]">
+<!-- Image -->
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Portable sleek black security camera and sensor kit on a desk" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCraxwIvdnUM-TbcbjAMxrvx2gCnMYa-VX8tThHvjO7H_0CIv0QPg6UNfGW2qaXSmT9uNrjVmzvZ5PQxmpH9w5nOXEzfTJ-cYe9rvRCZgBsNlPoWUbtdW9q7ONnzGe6WM2F_cGuSMNSl8VE9fQQ9_Qo-Vsqaf3QaSDcEjtlGevrmgOXb4wFpjsSwh3PMn4gMCo8ZqVOdE9KAO95DfeXE67i_e67O53nkA2ZBERQSF8AP0jwT4agBW31gj5J1g-qFk7yI2X1qp8AcdIB");'>
+</div>
+<!-- Badge -->
+<div class="absolute top-3 left-3 bg-white/90 dark:bg-black/80 backdrop-blur px-2.5 py-1 rounded text-xs font-bold tracking-wider uppercase text-primary shadow-sm">
+                                Best Seller
+                            </div>
+<!-- Quick Action Overlay -->
+<div class="absolute inset-x-0 bottom-0 p-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex justify-center bg-gradient-to-t from-black/60 to-transparent pb-6">
+<button class="w-full bg-white text-[#111318] font-bold py-3 rounded-lg shadow-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+                                    Add to Cart
+                                </button>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors">The Nomad Kit</h3>
+<p class="text-primary dark:text-blue-400 font-bold">$199</p>
+</div>
+<p class="text-[#616f89] text-sm font-normal">Portable sensors &amp; cam for travelers.</p>
+<!-- Color Swatches (Optional Detail) -->
+<div class="flex gap-1.5 mt-1.5">
+<div class="size-3 rounded-full bg-black border border-gray-300"></div>
+<div class="size-3 rounded-full bg-gray-400"></div>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group flex flex-col gap-4 cursor-pointer">
+<div class="relative w-full aspect-[4/5] overflow-hidden rounded-xl bg-gray-100 dark:bg-[#1e2732]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Modern smart home security hub device on a minimalist shelf" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAsBBmL3Dew0mtGyTiZaDDpn1oUPjvXdsXZbitP18L9CpGzAbcNufiOiUHOz9KE8mOwZvs4kR8zePEIjbzjgtQLRtw13yAV52VKFoGjbpTTfhnZLq0h3n6KfP6plmTUHyAdTFPh7dZy6rs1952t_1ITYsGXzv-W-hwAtes3Zeu2y5qdQMYJjlPKAtxDATQaLLoTVRuVHZSWAw7A1smtLO0T_93sJDI0nvFP5Fn4WUwXaVEsJymLZpaLbG9Jlfsy9d6VU8OGymazfgBp");'>
+</div>
+<div class="absolute top-3 left-3 bg-primary text-white px-2.5 py-1 rounded text-xs font-bold tracking-wider uppercase shadow-sm">
+                                New Arrival
+                            </div>
+<div class="absolute inset-x-0 bottom-0 p-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex justify-center bg-gradient-to-t from-black/60 to-transparent pb-6">
+<button class="w-full bg-white text-[#111318] font-bold py-3 rounded-lg shadow-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+                                    Add to Cart
+                                </button>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors">Fortress Bundle</h3>
+<p class="text-primary dark:text-blue-400 font-bold">$450</p>
+</div>
+<p class="text-[#616f89] text-sm font-normal">Complete perimeter defense system.</p>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group flex flex-col gap-4 cursor-pointer">
+<div class="relative w-full aspect-[4/5] overflow-hidden rounded-xl bg-gray-100 dark:bg-[#1e2732]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Smart doorbell camera mounted on a modern grey door frame" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuADj1FIGCKySSELDhrX1xXuL5tSv-JYlniyzL8vc7ICYP2sqQAAo11wsU3gNcYAgoFDiAgtxqrqAjRISV3obMHr-UovKvzpf2z2fgJTDeN530jN4S3LL7Ej_7phTMUT9xMtlFALJFi7Nf4P0usMhK9TN6cRV-cIbuhDg_gFO0h1EOz8do5nUobVwAqHQFQSO43Bye71r3MsiTwzW4pjdBOdWec0fh1P1EsVQ265vFruMcnWrl_ubZ-Rehk6umECOp6rl__x46-jkkqs");'>
+</div>
+<div class="absolute inset-x-0 bottom-0 p-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex justify-center bg-gradient-to-t from-black/60 to-transparent pb-6">
+<button class="w-full bg-white text-[#111318] font-bold py-3 rounded-lg shadow-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+                                    Add to Cart
+                                </button>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors">Entry Essentials</h3>
+<p class="text-primary dark:text-blue-400 font-bold">$299</p>
+</div>
+<p class="text-[#616f89] text-sm font-normal">Smart lock + Video Doorbell 2.0.</p>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group flex flex-col gap-4 cursor-pointer">
+<div class="relative w-full aspect-[4/5] overflow-hidden rounded-xl bg-gray-100 dark:bg-[#1e2732]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Outdoor weather-proof security camera mounted on wall" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBcqc5cPabUngpqbAQWcpubtl6P6GPt5yXlc8aAjL2Dfzpj-Nf8_mNLyYIkaEnNGbvq4gXLbCYTBs1rSpH24Tp1CfVNrW3ahaI34MG1yOgswrzKYC_bTQYxavyGzqUHB72S37D8MrzTE3Fjhp142z8xU7g2h6Q3411UXsoh5QHQjrKR7i-18YEV7sbugsksYVLJ90vOi8x7DxQ2jd02lRuYmvKA2wCK0ov_OSkAxbm41lzPoChWBYD_4EOgfmfNeX8F_NqCO1zePVOP");'>
+</div>
+<div class="absolute inset-x-0 bottom-0 p-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex justify-center bg-gradient-to-t from-black/60 to-transparent pb-6">
+<button class="w-full bg-white text-[#111318] font-bold py-3 rounded-lg shadow-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+                                    Add to Cart
+                                </button>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors">Perimeter Guard</h3>
+<p class="text-primary dark:text-blue-400 font-bold">$150</p>
+</div>
+<p class="text-[#616f89] text-sm font-normal">Weather-proof cams for every angle.</p>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group flex flex-col gap-4 cursor-pointer">
+<div class="relative w-full aspect-[4/5] overflow-hidden rounded-xl bg-gray-100 dark:bg-[#1e2732]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Central control unit hub sitting on a white table" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDpHLUBh_qnaXaYESi2Ie6SRJlyJYzhwlfmCuszJr_wHGKsSCd5EYM4dPzcdrPGdRhtz7WU3fxesgAOVkS-mG7hVW8051Jq3wMzscoA6toL_kxAweSqGp581Kx1vehPupqNwWPErIRmEAQahOw0_Hph8xPoAdPY3WAPd8sKd8_HNn8bUzNR26n7t3cZmoup_nT6wi1rNP4c-FO3-7aWbUsoLG5h5f35Tvxytmg2gm0iuFKbpepp_MYG54OZYxdLEbZbrvh6X6k-i2U9");'>
+</div>
+<div class="absolute inset-x-0 bottom-0 p-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex justify-center bg-gradient-to-t from-black/60 to-transparent pb-6">
+<button class="w-full bg-white text-[#111318] font-bold py-3 rounded-lg shadow-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+                                    Add to Cart
+                                </button>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors">Smart Hub Pro</h3>
+<p class="text-primary dark:text-blue-400 font-bold">$120</p>
+</div>
+<p class="text-[#616f89] text-sm font-normal">The brain of your secure home.</p>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="group flex flex-col gap-4 cursor-pointer">
+<div class="relative w-full aspect-[4/5] overflow-hidden rounded-xl bg-gray-100 dark:bg-[#1e2732]">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Three pack of small white motion sensor devices" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAiJBCaHygeyzL260PrjnFuzBKNiX2Zo_uBNLgHzC8WnFJQjD6C2SxnaZ1uyIoybkrUACh4MgQM0dnFpVvaFQb4zQo1a92zju3P6jdc1ZWSrj_4Hqfzar3d4KGO-BaaYBi3gpIrMDGJZkNYatb6IHYA6pxNWAihFEn7ty-Mq9_kcggnl9B5PsxT2Q1jPOePCqtymOrkD30qN1ShmAyr54pYnG_PpLiLpV0wCy8BS-UCFIwy3PJ4PS8ysifJGKK54M2HERTVsHxsQfWh");'>
+</div>
+<div class="absolute top-3 left-3 bg-red-600 text-white px-2.5 py-1 rounded text-xs font-bold tracking-wider uppercase shadow-sm">
+                                Low Stock
+                            </div>
+<div class="absolute inset-x-0 bottom-0 p-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex justify-center bg-gradient-to-t from-black/60 to-transparent pb-6">
+<button class="w-full bg-white text-[#111318] font-bold py-3 rounded-lg shadow-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+                                    Add to Cart
+                                </button>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<h3 class="text-[#111318] dark:text-white text-lg font-bold leading-tight group-hover:text-primary transition-colors">Motion Sensors Pack</h3>
+<p class="text-primary dark:text-blue-400 font-bold">$89</p>
+</div>
+<p class="text-[#616f89] text-sm font-normal">3-pack motion detectors. Instant alerts.</p>
+</div>
+</div>
+</div>
+<!-- Pagination / Load More -->
+<div class="flex justify-center py-10">
+<button class="px-8 py-3 bg-white dark:bg-[#1e2732] border border-[#e5e7eb] dark:border-[#2a3441] rounded-lg text-[#111318] dark:text-white font-bold hover:bg-[#f0f2f4] dark:hover:bg-[#2a3441] transition-colors shadow-sm">
+                        Load More Products
+                    </button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-[#101622] border-t border-[#f0f2f4] dark:border-[#2a3441] pt-16 pb-8">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2 text-[#111318] dark:text-white">
+<span class="material-symbols-outlined text-primary">shield_lock</span>
+<span class="text-lg font-bold">SecureHome</span>
+</div>
+<p class="text-[#616f89] text-sm leading-relaxed">
+                            Protecting over 100,000 homes worldwide with state-of-the-art technology and seamless design.
+                        </p>
+</div>
+<div>
+<h4 class="text-[#111318] dark:text-white font-bold mb-4">Shop</h4>
+<ul class="flex flex-col gap-2">
+<li><a class="text-[#616f89] hover:text-primary text-sm transition-colors" href="#">All Products</a></li>
+<li><a class="text-[#616f89] hover:text-primary text-sm transition-colors" href="#">New Arrivals</a></li>
+<li><a class="text-[#616f89] hover:text-primary text-sm transition-colors" href="#">Bundles</a></li>
+<li><a class="text-[#616f89] hover:text-primary text-sm transition-colors" href="#">Accessories</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[#111318] dark:text-white font-bold mb-4">Company</h4>
+<ul class="flex flex-col gap-2">
+<li><a class="text-[#616f89] hover:text-primary text-sm transition-colors" href="#">Our Story</a></li>
+<li><a class="text-[#616f89] hover:text-primary text-sm transition-colors" href="#">Careers</a></li>
+<li><a class="text-[#616f89] hover:text-primary text-sm transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="text-[#616f89] hover:text-primary text-sm transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[#111318] dark:text-white font-bold mb-4">Stay Connected</h4>
+<p class="text-[#616f89] text-sm mb-4">Join our newsletter for exclusive offers and security tips.</p>
+<div class="flex gap-2">
+<input class="flex-1 bg-[#f0f2f4] dark:bg-[#1e2732] border-none rounded-lg px-4 py-2 text-sm text-[#111318] dark:text-white focus:ring-1 focus:ring-primary" placeholder="Enter your email" type="email"/>
+<button class="bg-primary hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-bold text-sm transition-colors">
+                                Subscribe
+                            </button>
+</div>
+</div>
+</div>
+<div class="border-t border-[#f0f2f4] dark:border-[#2a3441] pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+<p class="text-[#616f89] text-sm">© 2023 SecureHome Inc. All rights reserved.</p>
+<div class="flex gap-4">
+<a class="text-[#616f89] hover:text-primary transition-colors" href="#"><span class="sr-only">Twitter</span>
+<!-- Simple svg placeholder for social -->
+<svg class="size-5 fill-current" viewbox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg>
+</a>
+<a class="text-[#616f89] hover:text-primary transition-colors" href="#"><span class="sr-only">Instagram</span>
+<svg class="size-5 fill-current" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

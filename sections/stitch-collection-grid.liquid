@@ -1,0 +1,186 @@
+{{ 'stitch-theme.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="stitch-collection-grid w-full relative z-10 section-{{ section.id }}-padding bg-background min-h-screen">
+  <div class="layout-content-container max-w-[1200px] w-full px-6 mx-auto">
+    <!-- Breadcrumbs -->
+    <div class="flex flex-wrap gap-2 py-4">
+        <a class="text-text-muted hover:text-primary text-sm font-medium leading-normal transition-colors no-underline" href="{{ routes.root_url }}">Home</a>
+        <span class="text-text-muted text-sm font-medium leading-normal">/</span>
+        <a class="text-text-muted hover:text-primary text-sm font-medium leading-normal transition-colors no-underline" href="{{ routes.all_products_collection_url }}">Shop</a>
+        <span class="text-text-muted text-sm font-medium leading-normal">/</span>
+        <span class="text-text-main text-sm font-medium leading-normal">{{ collection.title }}</span>
+    </div>
+
+    <!-- Page Heading -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 py-6 border-b border-white/10">
+        <div class="flex flex-col gap-2">
+            <h1 class="text-text-main text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+                {{ collection.title }}
+            </h1>
+            {% if collection.description != blank %}
+                <div class="text-text-muted text-lg font-normal leading-normal max-w-2xl rte">
+                    {{ collection.description }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Toolbar / Filters -->
+    <div class="sticky top-[var(--header-height,64px)] z-40 bg-background/95 backdrop-blur py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all duration-300">
+        <!-- Chips / Filters (Mockup for Visuals, Functional Filters require Facets logic) -->
+        <div class="flex gap-3 overflow-x-auto no-scrollbar w-full sm:w-auto pb-1 sm:pb-0">
+             <button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-surface border border-white/10 pl-4 pr-3 hover:border-primary transition-colors shadow-sm">
+                <p class="text-text-main text-sm font-medium">Category</p>
+                <span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary">expand_more</span>
+            </button>
+             <button class="group flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-surface border border-white/10 pl-4 pr-3 hover:border-primary transition-colors shadow-sm">
+                <p class="text-text-main text-sm font-medium">Price Range</p>
+                <span class="material-symbols-outlined text-[20px] text-text-muted group-hover:text-primary">expand_more</span>
+            </button>
+        </div>
+        
+        <!-- Sort Mockup -->
+        <div class="flex items-center gap-2 shrink-0">
+             <span class="text-sm text-text-muted hidden sm:block">Sort by:</span>
+             <button class="flex h-9 items-center justify-center gap-x-2 rounded-lg bg-transparent text-text-main font-medium text-sm hover:bg-surface-highlight px-3 transition-colors">
+                 Featured <span class="material-symbols-outlined text-[18px]">sort</span>
+             </button>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    {% paginate collection.products by section.settings.products_per_page %}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 py-6">
+        {% for product in collection.products %}
+            <div class="group flex flex-col gap-4 cursor-pointer">
+                <div class="relative w-full aspect-[4/5] overflow-hidden rounded-xl bg-surface-highlight">
+                    {% if product.featured_image %}
+                        <img
+                            src="{{ product.featured_image | image_url: width: 600 }}"
+                            alt="{{ product.featured_image.alt | escape }}"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            loading="lazy"
+                            width="600"
+                            height="750"
+                        >
+                    {% else %}
+                        {{ 'product-1' | placeholder_svg_tag: 'w-full h-full opacity-30' }}
+                    {% endif %}
+
+                    <!-- Badge -->
+                    {% if product.available == false %}
+                         <div class="absolute top-3 left-3 bg-stone-600 text-white px-2.5 py-1 rounded text-xs font-bold tracking-wider uppercase shadow-sm">
+                            Sold Out
+                         </div>
+                    {% elsif product.compare_at_price > product.price %}
+                         <div class="absolute top-3 left-3 bg-red-600 text-white px-2.5 py-1 rounded text-xs font-bold tracking-wider uppercase shadow-sm">
+                            Sale
+                         </div>
+                    {% elsif product.tags contains 'New' %}
+                         <div class="absolute top-3 left-3 bg-primary text-white px-2.5 py-1 rounded text-xs font-bold tracking-wider uppercase shadow-sm">
+                            New Arrival
+                         </div>
+                    {% endif %}
+
+                    <!-- Quick Action Overlay -->
+                    <div class="absolute inset-x-0 bottom-0 p-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex justify-center bg-gradient-to-t from-black/60 to-transparent pb-6">
+                        <form method="post" action="/cart/add" class="w-full">
+                            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                            <button type="submit" class="w-full bg-white text-[#111318] font-bold py-3 rounded-lg shadow-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 border-none cursor-pointer">
+                                <span class="material-symbols-outlined text-[20px]">add_shopping_cart</span>
+                                Add to Cart
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <div class="flex justify-between items-start">
+                        <a href="{{ product.url }}" class="text-text-main text-lg font-bold leading-tight group-hover:text-primary transition-colors no-underline">
+                           {{ product.title }}
+                        </a>
+                        <p class="text-primary font-bold">{{ product.price | money }}</p>
+                    </div>
+                    {% if product.metafields.descriptors.subtitle != blank %}
+                         <p class="text-text-muted text-sm font-normal">{{ product.metafields.descriptors.subtitle }}</p>
+                    {% else %}
+                         <p class="text-text-muted text-sm font-normal">{{ product.description | strip_html | truncatewords: 8 }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+             <p class="col-span-3 text-center text-text-muted py-20">No products found.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if paginate.pages > 1 %}
+        <div class="flex justify-center py-10">
+             {% render 'pagination', paginate: paginate %}
+        </div>
+    {% endif %}
+    {% endpaginate %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Stitch Collection Grid",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 24,
+      "step": 4,
+      "default": 12,
+      "label": "Products per page"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stitch Collection Grid"
+    }
+  ]
+}
+{% endschema %}

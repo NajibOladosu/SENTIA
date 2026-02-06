@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Premium Shopping Cart Drawer</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "text-main": "#111318",
+                        "text-muted": "#616f89",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for the cart items area */
+        .cart-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .cart-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .cart-scroll::-webkit-scrollbar-thumb {
+            background-color: #e5e7eb;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark overflow-hidden">
+<!-- Main Page Content (Blurred Background Context) -->
+<div aria-hidden="true" class="relative min-h-screen w-full flex flex-col pointer-events-none select-none">
+<!-- Mock Nav -->
+<header class="flex items-center justify-between px-8 py-5 bg-white border-b border-gray-100">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">shield_lock</span>
+<span class="font-bold text-xl tracking-tight text-text-main">SENTINEL</span>
+</div>
+<nav class="hidden md:flex gap-8 text-sm font-medium text-text-muted">
+<span>Products</span>
+<span>Solutions</span>
+<span>Support</span>
+</nav>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-text-main">search</span>
+<span class="material-symbols-outlined text-text-main">person</span>
+<span class="material-symbols-outlined text-text-main">shopping_bag</span>
+</div>
+</header>
+<!-- Mock Hero Content to show behind blur -->
+<main class="flex-1 p-8 max-w-7xl mx-auto w-full">
+<div class="h-96 w-full bg-gray-200 rounded-2xl mb-8 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-300" data-alt="Modern minimalist living room interior with security devices" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA4eDUdvHNorpKKP2vmCRRRIWZke52mZfn2X43ChgjFyA5bRvUwbgxjeeXnHjRrt3QbjRb9cJsHTGQp5O3iufZme_AiRWz_wnewL1IEgkswnjYkvQPv6tmRow4oJzR_7qGS3oFYU7iXviq82CQalZxm2WZT8w-k7q5pQb7d31rC-HaSQ88zO27fQaq2tsS7FHC1mBe4Wk6QaxbpcwYhiwB6yl9pLEnYH97Zw6hAfVffUdddDvW2JRluMEFHQP_tlqWk5blRhAcedprr'); background-size: cover; background-position: center;"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="h-64 bg-white rounded-xl shadow-sm"></div>
+<div class="h-64 bg-white rounded-xl shadow-sm"></div>
+<div class="h-64 bg-white rounded-xl shadow-sm"></div>
+</div>
+</main>
+</div>
+<!-- Overlay Backdrop -->
+<div class="fixed inset-0 bg-background-dark/30 backdrop-blur-sm z-40 transition-opacity duration-300 ease-in-out"></div>
+<!-- Slide-out Drawer -->
+<div aria-labelledby="slide-over-title" aria-modal="true" class="fixed inset-y-0 right-0 z-50 flex w-full max-w-[480px] flex-col bg-white shadow-2xl transform transition-transform duration-300 ease-out" role="dialog">
+<!-- Drawer Header -->
+<div class="flex items-center justify-between px-6 py-5 border-b border-[#f0f2f4] bg-white z-10">
+<div class="flex items-center gap-3">
+<h2 class="text-text-main text-lg font-bold tracking-tight" id="slide-over-title">Your Cart</h2>
+<span class="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">2</span>
+</div>
+<button class="group p-2 -mr-2 text-text-muted hover:text-text-main transition-colors rounded-full hover:bg-gray-100">
+<span class="material-symbols-outlined text-[24px]">close</span>
+</button>
+</div>
+<!-- Drawer Body (Scrollable) -->
+<div class="flex-1 overflow-y-auto cart-scroll px-6 py-2">
+<!-- Item 1 -->
+<div class="py-6 border-b border-[#f0f2f4]">
+<div class="flex gap-4">
+<!-- Product Image -->
+<div class="relative shrink-0 overflow-hidden rounded-lg border border-gray-100 bg-gray-50 h-[88px] w-[88px] group cursor-pointer">
+<div class="absolute inset-0 bg-center bg-contain bg-no-repeat transition-transform duration-500 group-hover:scale-110" data-alt="Smart lock device close up on door" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBN0RXhJHA-Pi4nsp4GN01GUc46E1uB7j6jkXVFt7_jeZn65y_6iPR5waxE8zws2ZJ227xmyqd3SKm2lb-xIf89C09B5Wk999NDhUxYwPWVp0XFwvmrSnBbVZbzb79-dixdV3fsn848a_3y6WZwXT7jbSRPuk5VzF4lTLYhmq1ViGcwZy3HRzwFInhgMtLZMAFgd-dmupy7Kly48HoR-MgHtwu2IcTLSX6vTDKOPD25tuBckCSY1AFi8mb-tNNJNRgGU4-fZ1ypfJ4S");'></div>
+</div>
+<!-- Product Details -->
+<div class="flex flex-1 flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-text-main text-base font-semibold leading-snug cursor-pointer hover:text-primary transition-colors">Sentinel Smart Lock</h3>
+<p class="text-text-muted text-sm mt-0.5">Midnight Grey</p>
+</div>
+<p class="text-text-main font-semibold text-base">$249.00</p>
+</div>
+<div class="flex items-end justify-between mt-2">
+<!-- Quantity Adjuster -->
+<div class="flex items-center rounded-md border border-[#e5e7eb] h-8 w-fit bg-white">
+<button class="flex h-full w-8 items-center justify-center text-text-muted hover:text-text-main hover:bg-gray-50 rounded-l-md transition-colors">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<input class="h-full w-8 p-0 text-center text-sm font-medium text-text-main border-none focus:ring-0 bg-transparent cursor-default" readonly="" type="text" value="1"/>
+<button class="flex h-full w-8 items-center justify-center text-text-muted hover:text-text-main hover:bg-gray-50 rounded-r-md transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+<!-- Remove Action -->
+<button class="text-xs font-medium text-text-muted hover:text-red-600 underline decoration-gray-300 underline-offset-2 hover:decoration-red-200 transition-colors">Remove</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="py-6 border-b border-[#f0f2f4]">
+<div class="flex gap-4">
+<!-- Product Image -->
+<div class="relative shrink-0 overflow-hidden rounded-lg border border-gray-100 bg-gray-50 h-[88px] w-[88px] group cursor-pointer">
+<div class="absolute inset-0 bg-center bg-contain bg-no-repeat transition-transform duration-500 group-hover:scale-110" data-alt="Modern white security camera on wall" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD7RZ8Hz720VIPbyBW-v5YBB5nb84SPNUlGQkoo3bGmyYIFq0eRwLmWOJ0atRm4MsHpppCXcPoNkONUxdntJz5xLKXAbEKuww3cEqTx1FFbP6RQx8gXNvn3GdYNeQPv6VNznuP--Uece--1LiPCy8Vbec_2o9Gcsa7vsDJszPLOcu4rNU_hf6oxM1wA2hEbHmlDcAZUiccsu6t_TSdiOQjfSJFI80OwNT3m2W3ug7zG28NlVDtbmZpSXqpE0GsVhSh2BTYeeXItqdlR");'></div>
+</div>
+<!-- Product Details -->
+<div class="flex flex-1 flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-text-main text-base font-semibold leading-snug cursor-pointer hover:text-primary transition-colors">Nomad Wi-Fi Cam</h3>
+<p class="text-text-muted text-sm mt-0.5">2-Pack Bundle</p>
+</div>
+<p class="text-text-main font-semibold text-base">$189.00</p>
+</div>
+<div class="flex items-end justify-between mt-2">
+<!-- Quantity Adjuster -->
+<div class="flex items-center rounded-md border border-[#e5e7eb] h-8 w-fit bg-white">
+<button class="flex h-full w-8 items-center justify-center text-text-muted hover:text-text-main hover:bg-gray-50 rounded-l-md transition-colors">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<input class="h-full w-8 p-0 text-center text-sm font-medium text-text-main border-none focus:ring-0 bg-transparent cursor-default" readonly="" type="text" value="1"/>
+<button class="flex h-full w-8 items-center justify-center text-text-muted hover:text-text-main hover:bg-gray-50 rounded-r-md transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+<!-- Remove Action -->
+<button class="text-xs font-medium text-text-muted hover:text-red-600 underline decoration-gray-300 underline-offset-2 hover:decoration-red-200 transition-colors">Remove</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Optional: Empty slot to push content up if list is short, or just padding -->
+<div class="py-4"></div>
+</div>
+<!-- Drawer Footer (Sticky) -->
+<div class="border-t border-[#f0f2f4] bg-white px-6 py-6 shadow-[0_-4px_12px_rgba(0,0,0,0.03)] z-20">
+<!-- Summary Lines -->
+<div class="flex justify-between items-center mb-2">
+<span class="text-text-muted text-sm font-normal">Subtotal</span>
+<span class="text-text-main text-lg font-bold tracking-tight">$438.00</span>
+</div>
+<p class="text-text-muted text-xs font-normal mb-6">Shipping and taxes calculated at checkout.</p>
+<!-- Primary Action -->
+<button class="w-full bg-primary hover:bg-blue-700 text-white font-bold text-sm py-4 px-6 rounded-lg transition-all duration-200 shadow-lg shadow-blue-900/10 hover:shadow-blue-900/20 transform active:scale-[0.99] flex items-center justify-center gap-2 group">
+<span>Secure Checkout</span>
+<span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<!-- Trust Badges -->
+<div class="flex items-center justify-center gap-6 mt-6 pt-2 opacity-60">
+<div class="flex items-center gap-1.5" title="Secure SSL Encryption">
+<span class="material-symbols-outlined text-[16px] text-text-muted">lock</span>
+<span class="text-[10px] uppercase font-bold tracking-wider text-text-muted">SSL Secure</span>
+</div>
+<div class="flex items-center gap-1.5" title="30-Day Guarantee">
+<span class="material-symbols-outlined text-[16px] text-text-muted">verified_user</span>
+<span class="text-[10px] uppercase font-bold tracking-wider text-text-muted">30-Day Guarantee</span>
+</div>
+</div>
+</div>
+</div>
+</body></html>

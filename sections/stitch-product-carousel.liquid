@@ -1,0 +1,142 @@
+{{ 'stitch-theme.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section class="stitch-product-carousel w-full relative z-10 section-{{ section.id }}-padding bg-background">
+  <div class="layout-content-container max-w-[1200px] w-full px-6 mx-auto">
+    <div class="flex overflow-x-auto no-scrollbar pb-12 pt-8 gap-6 snap-x snap-mandatory mask-linear-fade" style="scroll-padding-left: 24px;">
+        {%- if section.settings.collection != blank -%}
+            {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+                <div class="flex-none w-[280px] md:w-[320px] snap-center animate-fade-in" style="animation-delay: {{ forloop.index | times: 0.1 }}s;">
+                    <div class="bg-surface hover:bg-surface-highlight rounded-3xl p-5 h-full flex flex-col gap-6 shadow-lg hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 group border border-white/5 relative">
+                        <a href="{{ product.url }}" class="absolute inset-0 z-0" aria-label="{{ product.title }}"></a>
+                        
+                        <div class="w-full aspect-square bg-[#121212] rounded-2xl overflow-hidden flex items-center justify-center relative z-10 pointer-events-none">
+                            {% if product.featured_image %}
+                                <img
+                                    src="{{ product.featured_image | image_url: width: 400 }}"
+                                    alt="{{ product.featured_image.alt | escape }}"
+                                    class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100 mix-blend-normal"
+                                    loading="lazy"
+                                    width="280"
+                                    height="280"
+                                >
+                            {% else %}
+                                {{ 'product-1' | placeholder_svg_tag: 'w-full h-full opacity-50' }}
+                            {% endif %}
+                            
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300"></div>
+                            
+                            <form method="post" action="/cart/add" class="pointer-events-auto">
+                                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                                <button type="submit" class="absolute bottom-4 right-4 w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-primary z-20">
+                                    <span class="material-symbols-outlined text-lg">add</span>
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="flex flex-col flex-1 justify-between px-1 pointer-events-none">
+                            <div>
+                                <h3 class="text-lg font-semibold text-text-main group-hover:text-primary transition-colors">{{ product.title }}</h3>
+                                <p class="text-sm text-text-muted mt-1">{{ product.description | strip_html | truncatewords: 5 }}</p>
+                            </div>
+                            <div class="flex items-center justify-between mt-4 border-t border-white/5 pt-4">
+                                <span class="text-base font-medium text-gray-200">{{ product.price | money }}</span>
+                                {% assign new_badge_threshold = 'now' | date: '%s' | minus: 2592000 %}
+                                {% assign product_created_timestamp = product.created_at | date: '%s' %}
+                                {% if product.tags contains 'New' or product_created_timestamp > new_badge_threshold %}
+                                    <span class="text-[10px] font-bold text-primary bg-primary/10 border border-primary/20 px-2 py-0.5 rounded uppercase tracking-wider">New</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {%- endfor -%}
+        {%- else -%}
+             {%- for i in (1..4) -%}
+                <div class="flex-none w-[280px] md:w-[320px] snap-center">
+                    <div class="bg-surface rounded-3xl p-5 h-full flex flex-col gap-6 border border-white/5">
+                        <div class="w-full aspect-square bg-[#121212] rounded-2xl flex items-center justify-center">
+                             {{ 'product-' | append: i | placeholder_svg_tag: 'w-1/2 h-1/2 opacity-30' }}
+                        </div>
+                        <div class="flex flex-col flex-1 justify-between px-1">
+                            <div>
+                                <h3 class="text-lg font-semibold text-text-main">Product Title</h3>
+                                <p class="text-sm text-text-muted mt-1">Short description here.</p>
+                            </div>
+                            <div class="flex items-center justify-between mt-4 border-t border-white/5 pt-4">
+                                <span class="text-base font-medium text-gray-200">$99.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             {%- endfor -%}
+        {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Stitch Product Carousel",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 8,
+      "label": "Maximum products to show"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stitch Product Carousel"
+    }
+  ]
+}
+{% endschema %}

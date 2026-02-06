@@ -1,0 +1,286 @@
+{% comment %}
+  Stitch Premium Cart Drawer
+  Renders a sliding cart drawer with premium styling.
+  Accepts:
+  - block: {Object} Block object (optional)
+  
+  Usage:
+  {% render 'stitch-cart-drawer' %}
+{% endcomment %}
+
+{%- if settings.cart_type == 'drawer' and template.name != 'cart' -%}
+  <script src="{{ 'cart-drawer.js' | asset_url }}" type="module" fetchpriority="low"></script>
+  <script src="{{ 'cart-items.js' | asset_url }}" type="module" fetchpriority="low"></script> <!-- Ensure cart items JS is loaded if needed, though likely loaded globally or via component loader -->
+  
+  <cart-drawer-component
+    class="cart-drawer"
+    {% if settings.auto_open_cart_drawer %}
+      auto-open
+    {% endif %}
+  >
+    <button
+      class="button header-actions__action button-unstyled"
+      on:click="/open"
+      aria-haspopup="dialog"
+      aria-label="{{ 'accessibility.cart' | t }}"
+      aria-describedby="cart-bubble-text"
+      data-testid="cart-drawer-trigger"
+    >
+      {{ cart_icon }}
+    </button>
+
+    <dialog
+      ref="dialog"
+      class="cart-drawer__dialog fixed inset-y-0 right-0 z-50 flex w-[480px] max-w-full flex-col bg-surface shadow-2xl transform transition-transform duration-300 ease-out translate-x-full"
+      aria-modal="true"
+      aria-label="{{ 'sections.cart.title' | t }}"
+      tabindex="-1"
+      cart-summary-sticky="true"
+    >
+      <div class="cart-drawer__inner flex flex-col h-full w-full">
+        <cart-items-component
+            class="cart-items-component flex flex-col h-full w-full"
+            data-section-id="{{ section.id }}"
+        >
+          {%- if cart == empty -%}
+            <div class="drawer__header flex items-center justify-between px-6 py-5 border-b border-white/5 bg-surface z-10 w-full">
+                <button
+                  ref="closeButton"
+                  class="drawer__close group p-2 -mr-2 text-text-muted hover:text-text-main transition-colors rounded-full hover:bg-white/5 ml-auto"
+                  type="button"
+                  onclick="this.closest('cart-drawer-component').close()"
+                  aria-label="{{ 'accessibility.close' | t }}"
+                >
+                  <span class="material-symbols-outlined !text-[24px]">close</span>
+                </button>
+            </div>
+            <div class="cart-drawer__content flex flex-col h-full items-center justify-center p-8 text-center bg-surface flex-grow">
+              <div class="cart-drawer__empty-content flex flex-col items-center gap-4">
+                <span class="material-symbols-outlined text-text-muted !text-6xl">shopping_cart_off</span>
+                <h2 class="cart__empty-text text-text-main text-2xl font-bold">{{ 'sections.cart.empty' | t }}</h2>
+                <a href="{{ routes.all_products_collection_url }}" class="button w-full bg-primary hover:bg-primary-dark text-white font-bold text-sm py-4 px-6 rounded-lg transition-all duration-200 shadow-lg mt-4 flex items-center justify-center gap-2 group">
+                  <span>{{ 'general.continue_shopping' | t }}</span>
+                  <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+          {%- else -%}
+            <div class="drawer__header cart-drawer__header flex items-center justify-between px-6 py-5 border-b border-white/5 bg-surface z-10 w-full sticky top-0">
+              <div class="flex items-center gap-3">
+                <h2 class="drawer__heading text-text-main text-lg font-bold tracking-tight">{{ 'sections.cart.title' | t }}</h2>
+                <span class="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">{{ cart.item_count }}</span>
+              </div>
+              <button class="drawer__close group p-2 -mr-2 text-text-muted hover:text-text-main transition-colors rounded-full hover:bg-white/5" type="button" ref="closeButton" onclick="this.closest('cart-drawer-component').close()" aria-label="{{ 'accessibility.close' | t }}">
+                <span class="material-symbols-outlined !text-[24px]">close</span>
+              </button>
+            </div>
+
+            <div class="cart-drawer__content flex-1 overflow-y-auto cart-scroll px-6 py-2 bg-surface w-full">
+              <form action="{{ routes.cart_url }}" id="CartDrawer-Form" class="cart__contents cart-drawer__form w-full">
+                <div id="CartDrawer-CartItems" class="drawer__contents js-contents w-full">
+                    <div class="drawer__cart-items-wrapper w-full">
+                      <div class="cart-items w-full">
+                        {%- for item in cart.items -%}
+                          <div id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart-item py-6 border-b border-white/5 w-full" role="row" ref="cartItemRows" data-key="{{ item.key }}">
+                            <div class="flex gap-4 w-full">
+                              <!-- Product Image -->
+                              <div class="relative shrink-0 overflow-hidden rounded-lg border border-white/5 bg-surface-highlight h-[88px] w-[88px] group cursor-pointer">
+                                {% if item.image %}
+                                  <img class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
+                                    src="{{ item.image | image_url: width: 300 }}"
+                                    alt="{{ item.image.alt | escape }}"
+                                    width="150"
+                                    height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
+                                    loading="lazy"
+                                  >
+                                {% endif %}
+                              </div>
+
+                              <!-- Product Details -->
+                              <div class="flex flex-1 flex-col justify-between">
+                                <div class="flex justify-between items-start w-full">
+                                  <div class="cart-item__details">
+                                    <a href="{{ item.url }}" class="cart-item__name text-text-main text-base font-semibold leading-snug cursor-pointer hover:text-primary transition-colors block">{{ item.product.title | escape }}</a>
+                                    
+                                    {%- if item.product.has_only_default_variant == false or item.properties.size != 0 or item.selling_plan_allocation != nil -%}
+                                      <dl class="mt-0.5">
+                                        {%- if item.product.has_only_default_variant == false -%}
+                                          {%- for option in item.options_with_values -%}
+                                            <div class="product-option flex text-text-muted text-sm">
+                                              <dt class="hidden">{{ option.name }}: </dt>
+                                              <dd>{{ option.value }}</dd>
+                                            </div>
+                                          {%- endfor -%}
+                                        {%- endif -%}
+
+                                        {%- for property in item.properties -%}
+                                          {%- assign property_first_char = property.first | slice: 0 -%}
+                                          {%- if property.last != blank and property_first_char != '_' -%}
+                                            <div class="product-option text-text-muted text-sm">
+                                              <dt>{{ property.first }}: </dt>
+                                              <dd>
+                                                {%- if property.last contains '/uploads/' -%}
+                                                  <a href="{{ property.last }}" class="link" target="_blank">
+                                                    {{ property.last | split: '/' | last }}
+                                                  </a>
+                                                {%- else -%}
+                                                  {{ property.last }}
+                                                {%- endif -%}
+                                              </dd>
+                                            </div>
+                                          {%- endif -%}
+                                        {%- endfor -%}
+                                      </dl>
+                                    {%- endif -%}
+
+                                    {%- if item.selling_plan_allocation != nil -%}
+                                      <p class="product-option text-text-muted text-sm">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                                    {%- endif -%}
+                                  </div>
+
+                                  <div class="cart-item__price-wrapper">
+                                    {%- if item.original_line_price != item.final_line_price -%}
+                                      <div class="cart-item__discounted-prices">
+                                        <s class="cart-item__old-price price price--end">
+                                          {{ item.original_line_price | money }}
+                                        </s>
+                                        <span class="price price--end text-text-main font-semibold text-base">
+                                          {{ item.final_line_price | money }}
+                                        </span>
+                                      </div>
+                                    {%- else -%}
+                                      <span class="price price--end text-text-main font-semibold text-base">
+                                        {{ item.original_line_price | money }}
+                                      </span>
+                                    {%- endif -%}
+                                  </div>
+                                </div>
+
+                                <div class="flex items-end justify-between mt-2 w-full">
+                                  <!-- Quantity Adjuster -->
+                                  <!-- Using cart-quantity-selector-component if available, or manual structure -->
+                                  <!-- component-cart-items.js expects 'quantitySelectors' ref -->
+                                  <div class="cart-item__quantity flex items-center rounded-md border border-white/5 h-8 w-fit bg-surface-highlight" ref="quantitySelectors">
+                                    <quantity-input class="quantity flex items-center">
+                                      <button class="quantity__button no-js-hidden flex h-full w-8 items-center justify-center text-text-muted hover:text-text-main hover:bg-white/5 rounded-l-md transition-colors" name="minus" type="button" onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.dispatchEvent(new Event('change'))">
+                                        <span class="material-symbols-outlined !text-[16px]">remove</span>
+                                      </button>
+                                      <input class="quantity__input h-full w-8 p-0 text-center text-sm font-medium text-text-main border-none focus:ring-0 bg-transparent cursor-default"
+                                        type="number"
+                                        name="updates[]"
+                                        value="{{ item.quantity }}"
+                                        min="0"
+                                        aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                                        id="Drawer-quantity-{{ item.index | plus: 1 }}"
+                                        data-index="{{ item.index | plus: 1 }}"
+                                        data-line="{{ item.index | plus: 1 }}" 
+                                        data-cart-quantity="{{ item.quantity }}"
+                                      >
+                                      <button class="quantity__button no-js-hidden flex h-full w-8 items-center justify-center text-text-muted hover:text-text-main hover:bg-white/5 rounded-r-md transition-colors" name="plus" type="button" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.dispatchEvent(new Event('change'))">
+                                        <span class="material-symbols-outlined !text-[16px]">add</span>
+                                      </button>
+                                    </quantity-input>
+                                  </div> 
+                                  
+                                  <!-- Error Container (Required by JS) -->
+                                   <div ref="cartItemErrorContainer-{{ item.index | plus: 1 }}" class="hidden text-error text-xs" id="Line-item-error-{{ item.index | plus: 1 }}">
+                                      <span ref="cartItemError-{{ item.index | plus: 1 }}"></span>
+                                   </div>
+
+                                  <!-- Remove Action -->
+                                  <cart-remove-button id="CartDrawer-Remove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                                    <a class="button button--tertiary text-xs font-medium text-text-muted hover:text-error underline decoration-white/20 underline-offset-2 hover:decoration-error/50 transition-colors cursor-pointer" 
+                                       href="{{ item.url_to_remove }}"
+                                       aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}">
+                                      {{ 'sections.cart.remove' | t }}
+                                    </a>
+                                  </cart-remove-button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="drawer__footer cart-drawer__summary border-t border-white/5 bg-surface px-6 py-6 shadow-[0_-4px_12px_rgba(0,0,0,0.2)] z-20 w-full">
+              {%- if settings.show_cart_note -%}
+                  <!-- Cart Note logic here if needed -->
+              {%- endif -%}
+
+              <!-- Totals -->
+              <div class="drawer__footer-totals cart__blocks w-full">
+                <div class="totals flex justify-between items-center mb-2 w-full" role="status">
+                  <span class="totals__subtotal text-text-muted text-sm font-normal">{{ 'sections.cart.subtotal' | t }}</span>
+                  <span class="totals__subtotal-value text-text-main text-lg font-bold tracking-tight" ref="cartTotal">{{ cart.total_price | money_with_currency }}</span>
+                </div>
+
+                <div class="tax-note text-text-muted text-xs font-normal mb-6">
+                   {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                    {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                  {%- elsif cart.taxes_included -%}
+                    {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+                  {%- elsif shop.shipping_policy.body != blank -%}
+                    {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+                  {%- else -%}
+                    {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+                  {%- endif -%}
+                </div>
+              </div>
+
+              <!-- Checkout Button -->
+              <div class="cart__ctas w-full" {{ block.shopify_attributes }}>
+                <form action="{{ routes.cart_url }}" method="post" id="CartDrawer-Checkout">
+                  <button type="submit" id="CartDrawer-Checkout-Button" class="cart__checkout-button w-full bg-primary hover:bg-primary-dark text-white font-bold text-sm py-4 px-6 rounded-lg transition-all duration-200 shadow-lg shadow-blue-900/10 hover:shadow-blue-900/20 transform active:scale-[0.99] flex items-center justify-center gap-2 group" name="checkout" {% if cart == empty %} disabled{% endif %}>
+                    <span>{{ 'sections.cart.checkout' | t }}</span>
+                    <span class="material-symbols-outlined !text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                  </button>
+                </form>
+              </div>
+              
+              <!-- Trust Badges -->
+              <div class="flex items-center justify-center gap-6 mt-6 pt-2 opacity-60 w-full">
+                  <div class="flex items-center gap-1.5" title="Secure SSL Encryption">
+                      <span class="material-symbols-outlined !text-[16px] text-text-muted">lock</span>
+                      <span class="text-[10px] uppercase font-bold tracking-wider text-text-muted">SSL Secure</span>
+                  </div>
+                  <div class="flex items-center gap-1.5" title="30-Day Guarantee">
+                      <span class="material-symbols-outlined !text-[16px] text-text-muted">verified_user</span>
+                      <span class="text-[10px] uppercase font-bold tracking-wider text-text-muted">30-Day Guarantee</span>
+                  </div>
+              </div>
+            </div>
+          {%- endif -%}
+        </cart-items-component>
+      </div>
+    </dialog>
+  </cart-drawer-component>
+{%- endif -%}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+     // Ensure quantity inputs trigger change events for Shopify's listeners
+     document.querySelectorAll('quantity-input input').forEach(input => {
+        input.addEventListener('change', (e) => {
+            // Shopify's component-cart-items.js listens for 'change' or custom events?
+            // It listens to ThemeEvents.quantitySelectorUpdate
+            // Which is dispatched by component-quantity-selector.js usually upon change.
+            // If I just use <quantity-input>, I might need to manually ensure the event is fired if I don't use the standard component.
+            // However, typical setup:
+            const line = input.dataset.index;
+            const quantity = parseInt(input.value);
+            
+            document.dispatchEvent(new CustomEvent('quantity-selector:update', {
+                detail: {
+                    quantity,
+                    cartLine: line
+                },
+                bubbles: true
+            }));
+        });
+     });
+  });
+</script>
