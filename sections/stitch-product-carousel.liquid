@@ -14,13 +14,13 @@
   }
 {%- endstyle -%}
 
-<section class="stitch-product-carousel w-full relative z-10 section-{{ section.id }}-padding bg-background">
+<section class="stitch-product-carousel w-full relative z-10 section-{{ section.id }}-padding bg-background reveal">
   <div class="layout-content-container max-w-[1200px] w-full px-6 mx-auto">
     <div class="flex overflow-x-auto no-scrollbar pb-12 pt-8 gap-6 snap-x snap-mandatory mask-linear-fade" style="scroll-padding-left: 24px;">
         {%- if section.settings.collection != blank -%}
             {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
                 <div class="flex-none w-[280px] md:w-[320px] snap-center animate-fade-in" style="animation-delay: {{ forloop.index | times: 0.1 }}s;">
-                    <div class="bg-surface hover:bg-surface-highlight rounded-3xl p-5 h-full flex flex-col gap-6 shadow-lg hover:shadow-card-hover transition-all duration-500 hover:-translate-y-2 group border border-white/5 relative">
+                    <div class="bg-surface hover:bg-surface-highlight rounded-3xl p-5 h-full flex flex-col gap-6 shadow-premium hover:shadow-glow-primary transition-premium hover:-translate-y-3 group border border-white/5 relative overflow-hidden">
                         <a href="{{ product.url }}" class="absolute inset-0 z-0" aria-label="{{ product.title }}"></a>
                         
                         <div class="w-full aspect-square bg-[#121212] rounded-2xl overflow-hidden flex items-center justify-center relative z-10 pointer-events-none">
@@ -28,7 +28,7 @@
                                 <img
                                     src="{{ product.featured_image | image_url: width: 400 }}"
                                     alt="{{ product.featured_image.alt | escape }}"
-                                    class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110 opacity-90 group-hover:opacity-100 mix-blend-normal"
+                                    class="w-full h-full object-contain transition-premium group-hover:scale-110 opacity-90 group-hover:opacity-100 mix-blend-normal"
                                     loading="lazy"
                                     width="280"
                                     height="280"
@@ -41,15 +41,15 @@
                             
                             <form method="post" action="/cart/add" class="pointer-events-auto">
                                 <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                                <button type="submit" class="absolute bottom-4 right-4 w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:bg-primary z-20">
-                                    <span class="material-symbols-outlined text-lg">add</span>
+                                <button type="submit" class="absolute bottom-4 right-4 w-12 h-12 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center text-white opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-premium hover:bg-primary z-20 shadow-premium">
+                                    <span class="material-symbols-outlined text-xl">add</span>
                                 </button>
                             </form>
                         </div>
 
                         <div class="flex flex-col flex-1 justify-between px-1 pointer-events-none">
                             <div>
-                                <h3 class="text-lg font-semibold text-text-main group-hover:text-primary transition-colors">{{ product.title }}</h3>
+                                <h3 class="text-lg font-bold text-text-main group-hover:text-primary transition-premium leading-tight">{{ product.title }}</h3>
                                 <p class="text-sm text-text-muted mt-1">{{ product.description | strip_html | truncatewords: 5 }}</p>
                             </div>
                             <div class="flex items-center justify-between mt-4 border-t border-white/5 pt-4">

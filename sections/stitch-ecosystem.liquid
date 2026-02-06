@@ -14,17 +14,18 @@
   }
 {%- endstyle -%}
 
-<section class="stitch-ecosystem w-full relative z-10 section-{{ section.id }}-padding bg-background">
-  <div class="layout-content-container max-w-[1200px] w-full px-6 mx-auto">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6">
+<section class="stitch-ecosystem w-full relative z-10 section-{{ section.id }}-padding bg-background overflow-hidden reveal">
+  <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-[300px] h-[300px] bg-primary/5 blur-[100px] rounded-full pointer-events-none"></div>
+  <div class="layout-content-container max-w-[1200px] w-full px-6 mx-auto relative z-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 pb-8 transition-premium">
         <div>
-            <h2 class="text-3xl font-semibold tracking-tight text-text-main mb-2">{{ section.settings.heading }}</h2>
+            <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-text-main mb-3">{{ section.settings.heading }}</h2>
             <p class="text-text-muted">{{ section.settings.subheading }}</p>
         </div>
         {%- if section.settings.link_label != blank -%}
-            <a class="text-primary hover:text-text-main font-medium flex items-center gap-1 group transition-colors no-underline" href="{{ section.settings.link_url }}">
+            <a class="text-primary hover:text-text-main font-semibold flex items-center gap-1 group transition-premium no-underline" href="{{ section.settings.link_url }}">
                 {{ section.settings.link_label }}
-                <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-premium">arrow_forward</span>
             </a>
         {%- endif -%}
     </div>

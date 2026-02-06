@@ -19,13 +19,15 @@ html.dark {
     /* Dark Mode - Derived from Homepage (Premium Security) */
     --stitch-color-primary: #2997FF;
     --stitch-color-primary-dark: #0071e3;
-    --stitch-color-background: #000000;
-    --stitch-color-surface: #1c1c1e;
-    --stitch-color-surface-highlight: #2c2c2e;
+    --stitch-color-background: #010101;
+    /* Slightly off-black for depth */
+    --stitch-color-surface: #121212;
+    --stitch-color-surface-highlight: #1e1e1e;
     --stitch-color-text-main: #f5f5f7;
-    --stitch-color-text-muted: #a1a1aa;
+    --stitch-color-text-muted: #86868b;
+    /* Apple-style muted gray */
     /* lighter gray for dark mode */
-    --stitch-color-border: rgba(255, 255, 255, 0.1);
+    --stitch-color-border: rgba(255, 255, 255, 0.08);
 }
 
 /* Typography Utilities */
@@ -123,18 +125,30 @@ html.dark {
 
 /* Custom Utilities mimicking Tailwind class names used in Stitch HTML */
 .backdrop-blur-xl {
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
 }
 
 .backdrop-blur-sm {
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .backdrop-blur-md {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-morphism {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dark .glass-morphism {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Layout Utilities */
@@ -262,6 +276,23 @@ html.dark {
 
 .shadow-lg {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-premium {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.dark .shadow-premium {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.shadow-glow-primary {
+    box-shadow: 0 0 30px -5px var(--stitch-color-primary);
+}
+
+/* Smooth Transitions */
+.transition-premium {
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Material Symbols sizing overrides */
