@@ -11,7 +11,7 @@
                 "button_1_price": "$299",
                 "button_1_link": "/collections/all",
                 "button_2_label": "Learn more",
-                "button_2_link": "/pages/about-us",
+                "button_2_link": "/pages/contact",
                 "show_background_blobs": true,
                 "padding_top": 80,
                 "padding_bottom": 80
@@ -23,7 +23,7 @@
                 "heading": "The Ecosystem",
                 "subheading": "Complete your secure home setup.",
                 "link_label": "View all accessories",
-                "link_url": "/collections/accessories",
+                "link_url": "/collections/all",
                 "padding_top": 40,
                 "padding_bottom": 24
             }
@@ -46,7 +46,7 @@
                         "heading": "Privacy first.\nAlways.",
                         "text": "Local processing means your video footage never leaves your home without your permission. End-to-end encrypted.",
                         "link_label": "Read our privacy manifesto",
-                        "link_url": "/pages/privacy"
+                        "link_url": "/pages/contact"
                     }
                 },
                 "feature_2": {
@@ -72,7 +72,7 @@
                         "heading": "24/7 Professional Monitoring",
                         "text": "Get peace of mind with our optional subscription. Real humans, ready to help in an emergency.",
                         "button_label": "Start Free Trial",
-                        "button_link": "/products/monitoring"
+                        "button_link": "/collections/all"
                     }
                 }
             },

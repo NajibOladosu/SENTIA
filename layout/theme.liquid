@@ -191,6 +191,73 @@
         border: none !important;
         box-shadow: none !important;
       }
+      
+      /* DARK MODE - Header and Footer Styles */
+      html.dark header,
+      html.dark .header-section .header,
+      html.dark .shopify-section-header header,
+      html.dark [id*="header"] header {
+        background-color: var(--stitch-color-background) !important;
+        --color-background: 1,1,1 !important;
+        --color-foreground: 245,245,247 !important;
+        border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+      }
+      html.dark header *,
+      html.dark .header-section .header *,
+      html.dark .shopify-section-header header * {
+        color: var(--stitch-color-text-main) !important;
+      }
+      html.dark header a:hover,
+      html.dark .header-section .header a:hover {
+        color: var(--stitch-color-primary) !important;
+      }
+      
+      /* Dark mode footer */
+      html.dark footer,
+      html.dark .footer,
+      html.dark .shopify-section-group-footer-group,
+      html.dark [id*="footer"] {
+        background-color: var(--stitch-color-background) !important;
+        --color-background: 1,1,1 !important;
+        --color-foreground: 245,245,247 !important;
+        border-top: 1px solid rgba(255,255,255,0.05) !important;
+      }
+      html.dark footer *,
+      html.dark .footer * {
+        color: var(--stitch-color-text-muted) !important;
+      }
+      html.dark footer a:hover,
+      html.dark .footer a:hover {
+        color: var(--stitch-color-primary) !important;
+      }
+      html.dark footer h2,
+      html.dark footer h3,
+      html.dark footer h4 {
+        color: var(--stitch-color-text-main) !important;
+      }
+      
+      /* Header/Footer edge-to-edge padding fix */
+      header .page-width,
+      footer .page-width,
+      .header .page-width,
+      .footer .page-width {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        max-width: 100% !important;
+      }
+      
+      /* Horizontal scrollbar styling for carousel */
+      .stitch-product-carousel div::-webkit-scrollbar {
+        height: 6px;
+      }
+      .stitch-product-carousel div::-webkit-scrollbar-track {
+        background: rgba(255,255,255,0.05);
+        border-radius: 3px;
+      }
+      .stitch-product-carousel div::-webkit-scrollbar-thumb {
+        background: var(--stitch-color-primary);
+        border-radius: 3px;
+      }
     </style>
     {{ 'stitch-theme.css' | asset_url | stylesheet_tag }}
 
@@ -272,6 +339,8 @@
     >
       {{ content_for_layout }}
     </main>
+
+    {% render 'theme-switcher' %}
 
     {% sections 'footer-group' %}
 

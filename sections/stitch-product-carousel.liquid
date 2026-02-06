@@ -16,7 +16,7 @@
 
 <section class="stitch-product-carousel w-full relative z-10 section-{{ section.id }}-padding bg-background reveal">
   <div class="layout-content-container max-w-[1440px] w-full px-6 mx-auto">
-    <div class="flex overflow-x-auto no-scrollbar pb-12 pt-8 gap-6 snap-x snap-mandatory mask-linear-fade" style="scroll-padding-left: 24px;">
+    <div class="flex overflow-x-auto pb-12 pt-8 gap-6 snap-x snap-mandatory scroll-smooth" style="scroll-padding-left: 24px; scrollbar-width: thin; scrollbar-color: var(--stitch-color-primary) transparent;">
         {%- if section.settings.collection != blank -%}
             {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
                 <div class="flex-none w-[280px] md:w-[320px] snap-center animate-fade-in" style="animation-delay: {{ forloop.index | times: 0.1 }}s;">
