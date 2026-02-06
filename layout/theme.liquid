@@ -120,6 +120,35 @@
         opacity: 1;
         transform: translateY(0);
       }
+      
+      /* FULL-WIDTH OVERRIDES - Remove all page enclosure */
+      body {
+        --page-margin: 0px !important;
+      }
+      .page-width-wide,
+      .page-width-normal,
+      .page-width-narrow,
+      .page-width-content {
+        --page-margin: 0px !important;
+      }
+      /* Make Stitch sections break out of any grid constraints */
+      .stitch-hero,
+      .stitch-ecosystem,
+      .stitch-product-carousel,
+      .stitch-features-grid,
+      .stitch-collection-grid {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin-left: calc(-50vw + 50%) !important;
+        margin-right: calc(-50vw + 50%) !important;
+      }
+      /* Ensure header and footer also go full width */
+      #header-group,
+      #header-group > *,
+      .footer-section {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
     </style>
     {{ 'stitch-theme.css' | asset_url | stylesheet_tag }}
 
