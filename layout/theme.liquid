@@ -194,6 +194,7 @@
         z-index: 1000 !important;
         backdrop-filter: blur(20px) !important;
         -webkit-backdrop-filter: blur(20px) !important;
+        background-color: rgba(1,1,1,0.98) !important;
       }
       #header-group header,
       .header-section header {
@@ -205,32 +206,37 @@
         box-shadow: none !important;
       }
       
-      /* DARK MODE - Header Styles with MAX-WIDTH and BETTER CONTRAST */
-      html.dark #header-group,
-      html.dark .shopify-section-header {
-        background-color: rgba(1,1,1,0.95) !important;
-      }
-      html.dark header,
-      html.dark .header-section .header,
-      html.dark .shopify-section-header header,
-      html.dark [id*="header"] header {
-        background-color: transparent !important;
+      /* FORCE DARK HEADER - Always visible */
+      #header-group,
+      .shopify-section-header,
+      header,
+      .header-section .header,
+      [id*="header"] header {
+        background-color: rgba(1,1,1,0.98) !important;
         --color-background: 1,1,1 !important;
         --color-foreground: 255,255,255 !important;
-        border-bottom: 1px solid rgba(255,255,255,0.1) !important;
       }
-      /* High contrast header text - WHITE for visibility */
-      html.dark header *,
-      html.dark header a,
-      html.dark header span,
-      html.dark header button,
-      html.dark .header-section .header *,
-      html.dark .shopify-section-header header * {
+      /* Force white text on ALL header elements */
+      #header-group *,
+      header *,
+      header a,
+      header span,
+      header button,
+      .header-section .header *,
+      .shopify-section-header header *,
+      .header__logo *,
+      .header__heading a {
         color: #ffffff !important;
         fill: #ffffff !important;
       }
-      html.dark header a:hover,
-      html.dark .header-section .header a:hover {
+      /* Border bottom for definition */
+      header,
+      .header {
+        border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+      }
+      /* Hover state */
+      header a:hover,
+      .header-section .header a:hover {
         color: var(--stitch-color-primary) !important;
       }
       
